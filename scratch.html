@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>On the Green — A Golf Page</title>
+  <!-- Google font for the body (font-family handled in scratch.css too) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <!-- from-scratch stylesheet -->
+  <link rel="stylesheet" href="css/scratch.css" />
+</head>
+<body>
+
+  <!-- ===== DIV 1: top navigation bar ===== -->
+  <div class="topbar">
+    <span class="brand">⛳ On the Green</span>
+    <nav>
+      <!-- on-page anchors -->
+      <a href="#basics">Basics</a>
+      <a href="#watch">Watch</a>
+      <a href="#data">Data</a>
+      <a href="#app">App</a>
+      <!-- navigation back to the professional pages -->
+      <a href="index.html">← Back to my portfolio</a>
+    </nav>
+  </div>
+
+  <div class="page">
+
+    <!-- top anchor target -->
+    <a id="top"></a>
+
+    <!-- ===== DIV 2: hero block ===== -->
+    <div class="hero">
+      <h1>Why I'm Hooked on Golf</h1>
+      <p>Four-plus hours outside, one ball, and a game you can never quite beat.
+         Here's a quick tour of what I love about it — and a little volleyball, too.</p>
+      <!-- custom image, NOT from Bootstrap (hand-drawn SVG) -->
+      <img src="img/golf-hero.svg" alt="Illustration of a golf ball rolling toward the flag on a green" />
+    </div>
+
+    <!-- ===== DIV 3: main content card ===== -->
+    <div class="card">
+      <h2 id="basics">What Makes a Round</h2>
+      <p>People think golf is just hitting a ball, but every round breaks down into a
+         few distinct skills. Here's how I think about practicing — an ordered list of
+         priorities, each with the specific things I work on (an unordered list nested inside):</p>
+
+      <!-- REQUIREMENT: unordered list embedded inside an ordered list -->
+      <ol>
+        <li>Tee shots (set the tone for the hole)
+          <ul>
+            <li>Pick a target smaller than the fairway</li>
+            <li>Smooth tempo over raw power</li>
+            <li>Commit to the shot before standing over it</li>
+          </ul>
+        </li>
+        <li>Approach &amp; irons (give yourself looks at birdie)
+          <ul>
+            <li>Know your real carry distances, not your hero ones</li>
+            <li>Aim for the fat part of the green</li>
+          </ul>
+        </li>
+        <li>Short game (where scores actually drop)
+          <ul>
+            <li>Chip to a landing spot, not the hole</li>
+            <li>Practice the 3-to-15 foot putts that matter most</li>
+          </ul>
+        </li>
+        <li>The mental game (the hardest 6 inches in golf)
+          <ul>
+            <li>Reset after a bad shot — the next one is independent</li>
+            <li>Play the percentages, not the highlight reel</li>
+          </ul>
+        </li>
+      </ol>
+
+      <p style="margin-bottom:0;">
+        Fun crossover: a lot of the mental reset I rely on in golf came from competitive
+        volleyball — I was part of an Arizona <strong>State &amp; National Championship</strong>
+        team in 2021, and learning to forget the last point fast translates straight to the course.
+      </p>
+    </div>
+
+    <!-- ===== content card: YouTube ===== -->
+    <div class="card">
+      <h2 id="watch">A Tip Worth Watching</h2>
+      <p>The fastest way to improve is fixing the fundamentals. Here's a solid breakdown
+         of the golf swing:</p>
+
+      <!-- REQUIREMENT: embedded YouTube video.
+           To use your own video: open it on YouTube, click Share → Embed,
+           and replace the ID after /embed/ below with your video's ID. -->
+      <div class="video-wrap">
+        <iframe
+          src="https://www.youtube.com/embed/B_tkJEAGMDE"
+          title="Golf swing basics"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen></iframe>
+      </div>
+      <p style="font-size:0.88rem;color:#5a6b58;margin-bottom:0;">
+        (Video only plays on the live, hosted site — not when you open the file locally.)
+      </p>
+    </div>
+
+    <!-- ===== content card: Tableau ===== -->
+    <div class="card">
+      <h2 id="data">The Numbers Behind the Game</h2>
+      <p>Golf is a data nerd's dream. Here's a live, interactive PGA Tour player-performance
+         dashboard from Tableau Public — click around and filter it:</p>
+
+      <!-- REQUIREMENT: live, interactive embedded Tableau graph -->
+      <div class="viz-frame">
+        <div class='tableauPlaceholder' id='vizGolf' style='position: relative; width:100%;'>
+          <noscript>
+            <a href='https://public.tableau.com/app/profile/edwardhayter/viz/PGATOUR_PLAYER_PERFORMANCE_DASHBOARD/PlayerPerformance'>
+              PGA Tour Player Performance Dashboard
+            </a>
+          </noscript>
+          <object class='tableauViz' style='display:none;'>
+            <param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' />
+            <param name='embed_code_version' value='3' />
+            <param name='site_root' value='' />
+            <param name='name' value='PGATOUR_PLAYER_PERFORMANCE_DASHBOARD/PlayerPerformance' />
+            <param name='tabs' value='no' />
+            <param name='toolbar' value='yes' />
+            <param name='animate_transition' value='yes' />
+            <param name='display_static_image' value='yes' />
+            <param name='display_spinner' value='yes' />
+            <param name='display_overlay' value='yes' />
+            <param name='display_count' value='yes' />
+          </object>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== content card: app link ===== -->
+    <div class="card">
+      <h2 id="app">Try My Wealth-Growth Simulator</h2>
+      <p>I built a small interactive app that shows how investing and compounding grow money
+         over time — same long-game patience golf teaches. Give it a spin:</p>
+      <!-- REQUIREMENT: link from scratch page to the app -->
+      <a class="app-button" href="app.html">Open the Wealth Growth Simulator →</a>
+    </div>
+
+    <!-- on-page anchor: jump back to top -->
+    <div style="text-align:center;">
+      <a class="anchor-top" href="#top">↑ Back to top</a>
+    </div>
+
+    <div class="scratch-footer">
+      Built from scratch (HTML + CSS) by Jace Miller ·
+      <a href="index.html">Return to portfolio</a>
+    </div>
+
+  </div>
+
+  <!-- Tableau JS API: makes the dashboard live/interactive -->
+  <script type="text/javascript">
+    var divElement = document.getElementById('vizGolf');
+    var vizElement = divElement.getElementsByTagName('object')[0];
+    vizElement.style.width = '100%';
+    vizElement.style.height = '700px';
+    var scriptElement = document.createElement('script');
+    scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';
+    vizElement.parentNode.insertBefore(scriptElement, vizElement);
+  </script>
+
+</body>
+</html>
