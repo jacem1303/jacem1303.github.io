@@ -4,15 +4,7 @@ A personal portfolio site with a professional (Bootstrap) side, a from-scratch g
 and a single-page wealth-growth app.
 
 ## Files
-- `index.html` – professional home page (Bootstrap)
-- `about.html` – professional about page (Bootstrap)
-- `resume.html` – HTML résumé (Bootstrap)
-- `scratch.html` – from-scratch golf page (no Bootstrap)
-- `app.html` – wealth-growth simulator (single self-contained page)
-- `css/style.css` – styles for the professional pages
-- `css/scratch.css` – hand-written styles for the golf page
-- `img/headshot.png` – your photo
-- `img/golf-hero.svg` – custom golf illustration
+
 
 ## Before you submit — 2 things to personalize
 1. **GitHub username:** In `index.html`, `about.html`, and `resume.html`, find
