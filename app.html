@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Wealth Growth Simulator — Jace Miller</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+<style>
+  :root{
+    --navy:#0F2C4C; --navy-deep:#0A1F38; --brass:#C8A04B; --brass-dark:#A8843A;
+    --paper:#F4F6F8; --ink:#1A2230; --slate:#5C6B7A; --line:#E2E6EB; --green:#2E7D4F;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0; font-family:'Inter',system-ui,sans-serif; color:var(--ink);
+    background:var(--paper); line-height:1.55;
+  }
+  .topbar{
+    background:var(--navy); border-bottom:3px solid var(--brass);
+    padding:14px 22px; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px;
+  }
+  .topbar .title{font-family:'Fraunces',serif; color:#fff; font-size:1.25rem; font-weight:600;}
+  .topbar a{color:var(--brass); text-decoration:none; font-weight:600; font-size:0.95rem;}
+  .topbar a:hover{color:#fff;}
+
+  .wrap{max-width:1080px; margin:0 auto; padding:28px 20px 60px;}
+  .lead{color:var(--slate); max-width:680px; margin:0 0 26px;}
+  h1{font-family:'Fraunces',serif; color:var(--navy); margin:6px 0 4px; font-size:2rem;}
+
+  .grid{display:grid; grid-template-columns:340px 1fr; gap:24px;}
+  @media(max-width:840px){.grid{grid-template-columns:1fr;}}
+
+  .panel{background:#fff; border:1px solid var(--line); border-radius:12px; padding:22px;}
+  .panel h2{font-family:'Fraunces',serif; color:var(--navy); font-size:1.15rem; margin:0 0 14px;}
+
+  label{display:block; font-weight:600; font-size:0.9rem; margin:14px 0 4px;}
+  .field{display:flex; align-items:center; gap:8px;}
+  .field .pre{color:var(--slate); font-weight:600;}
+  input[type=number]{
+    width:100%; padding:9px 11px; border:1px solid var(--line); border-radius:8px;
+    font-family:inherit; font-size:1rem; color:var(--ink);
+  }
+  input[type=range]{width:100%; accent-color:var(--brass);}
+  .rangeval{font-weight:700; color:var(--brass-dark);}
+  .presets{display:flex; gap:8px; flex-wrap:wrap; margin-top:6px;}
+  .preset{
+    border:1px solid var(--brass); background:#fff; color:var(--brass-dark);
+    border-radius:100px; padding:6px 13px; font-size:0.82rem; font-weight:600; cursor:pointer;
+  }
+  .preset:hover{background:var(--brass); color:var(--navy-deep);}
+
+  .stats{display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-bottom:18px;}
+  .stat{background:var(--navy); color:#fff; border-radius:10px; padding:14px 16px;}
+  .stat.brass{background:linear-gradient(135deg,var(--brass) 0%,var(--brass-dark) 100%); color:var(--navy-deep);}
+  .stat .k{font-size:0.78rem; text-transform:uppercase; letter-spacing:0.08em; opacity:0.85; font-weight:600;}
+  .stat .v{font-family:'Fraunces',serif; font-size:1.5rem; font-weight:600; margin-top:2px;}
+  .stat .sub{font-size:0.78rem; opacity:0.8;}
+
+  .chart-card{background:#fff; border:1px solid var(--line); border-radius:12px; padding:18px;}
+  .milestones{margin-top:16px;}
+  .milestone{
+    display:flex; align-items:center; gap:10px; padding:9px 12px; border-radius:8px;
+    background:#fff; border:1px solid var(--line); margin-bottom:8px; font-size:0.92rem;
+  }
+  .milestone .dot{width:10px; height:10px; border-radius:50%; background:var(--green); flex:none;}
+  .milestone.miss{color:var(--slate);}
+  .milestone.miss .dot{background:#cfd6dd;}
+  .foot{margin-top:30px; color:var(--slate); font-size:0.86rem; text-align:center;}
+  .foot a{color:var(--navy); font-weight:600;}
+</style>
+</head>
+<body>
+
+  <div class="topbar">
+    <span class="title">💰 Wealth Growth Simulator</span>
+    <span>
+      <a href="scratch.html">← Golf page</a>
+      &nbsp;·&nbsp;
+      <a href="index.html">Portfolio</a>
+    </span>
+  </div>
+
+  <div class="wrap">
+    <h1>Watch your money compound</h1>
+    <p class="lead">
+      I'm a sucker for a good compound-interest chart, so I built one. Punch in what you'd
+      start with and add each month, then watch it grow. The faint dotted line is what you'd
+      have with <em>no</em> growth at all — the gap between the two lines is compounding doing
+      the heavy lifting.
+    </p>
+
+    <div class="grid">
+
+      <!-- ===== Controls ===== -->
+      <div class="panel">
+        <h2>Your plan</h2>
+
+        <div class="presets">
+          <button class="preset" data-preset="coffee">☕ Coffee money</button>
+          <button class="preset" data-preset="starter">🌱 Starter</button>
+          <button class="preset" data-preset="aggressive">🚀 Aggressive</button>
+        </div>
+
+        <label for="initial">Starting amount</label>
+        <div class="field"><span class="pre">$</span><input type="number" id="initial" value="1000" min="0" step="100"></div>
+
+        <label for="monthly">Monthly contribution</label>
+        <div class="field"><span class="pre">$</span><input type="number" id="monthly" value="300" min="0" step="25"></div>
+
+        <label for="rate">Annual return: <span class="rangeval" id="rateVal">8%</span></label>
+        <input type="range" id="rate" min="0" max="15" step="0.5" value="8">
+
+        <label for="years">Years: <span class="rangeval" id="yearsVal">30</span></label>
+        <input type="range" id="years" min="1" max="50" step="1" value="30">
+
+        <label for="inflation">Inflation (for "real" value): <span class="rangeval" id="inflVal">3%</span></label>
+        <input type="range" id="inflation" min="0" max="8" step="0.5" value="3">
+      </div>
+
+      <!-- ===== Results ===== -->
+      <div>
+        <div class="stats">
+          <div class="stat brass">
+            <div class="k">Future value</div>
+            <div class="v" id="outFuture">$0</div>
+            <div class="sub">after <span id="outYears">30</span> years</div>
+          </div>
+          <div class="stat">
+            <div class="k">You put in</div>
+            <div class="v" id="outContrib">$0</div>
+            <div class="sub">out of your own pocket</div>
+          </div>
+          <div class="stat">
+            <div class="k">Growth earned</div>
+            <div class="v" id="outGrowth">$0</div>
+            <div class="sub">compounding did this part</div>
+          </div>
+          <div class="stat">
+            <div class="k">Real value (today's $)</div>
+            <div class="v" id="outReal">$0</div>
+            <div class="sub">adjusted for inflation</div>
+          </div>
+        </div>
+
+        <div class="chart-card">
+          <canvas id="chart" height="150"></canvas>
+        </div>
+
+        <div class="milestones" id="milestones"></div>
+      </div>
+
+    </div>
+
+    <p class="foot">
+      Built by Jace Miller as a single-page app · just an estimate, not financial advice ·
+      <a href="scratch.html">back to the golf page</a>
+    </p>
+  </div>
+
+<script>
+  const $ = id => document.getElementById(id);
+  const fmt = n => '$' + Math.round(n).toLocaleString('en-US');
+
+  const presets = {
+    coffee:     {initial:0,    monthly:150, rate:8,  years:40, inflation:3},
+    starter:    {initial:1000, monthly:300, rate:8,  years:30, inflation:3},
+    aggressive: {initial:5000, monthly:800, rate:10, years:35, inflation:3},
+  };
+
+  let chart;
+
+  function compute(){
+    const initial  = Math.max(0, +$('initial').value || 0);
+    const monthly  = Math.max(0, +$('monthly').value || 0);
+    const rate     = +$('rate').value / 100;
+    const years    = +$('years').value;
+    const infl     = +$('inflation').value / 100;
+
+    $('rateVal').textContent  = $('rate').value + '%';
+    $('yearsVal').textContent = years;
+    $('inflVal').textContent  = $('inflation').value + '%';
+    $('outYears').textContent = years;
+
+    const rMonthly = rate / 12;
+    let balance = initial;
+    let contributed = initial;
+
+    const labels = [0], invested = [initial], plain = [initial];
+
+    for (let y = 1; y <= years; y++){
+      for (let m = 0; m < 12; m++){
+        balance = balance * (1 + rMonthly) + monthly;
+        contributed += monthly;
+      }
+      labels.push(y);
+      invested.push(balance);
+      plain.push(contributed);
+    }
+
+    const future = balance;
+    const ownMoney = contributed;
+    const growth = future - ownMoney;
+    const real = future / Math.pow(1 + infl, years);
+
+    $('outFuture').textContent  = fmt(future);
+    $('outContrib').textContent = fmt(ownMoney);
+    $('outGrowth').textContent  = fmt(growth);
+    $('outReal').textContent    = fmt(real);
+
+    drawChart(labels, invested, plain);
+    drawMilestones(labels, invested);
+  }
+
+  function drawChart(labels, invested, plain){
+    const ctx = $('chart').getContext('2d');
+    const grad = ctx.createLinearGradient(0,0,0,300);
+    grad.addColorStop(0,'rgba(200,160,75,0.35)');
+    grad.addColorStop(1,'rgba(200,160,75,0.02)');
+
+    const data = {
+      labels,
+      datasets:[
+        { label:'With compound growth', data:invested, borderColor:'#A8843A',
+          backgroundColor:grad, fill:true, tension:0.25, borderWidth:3, pointRadius:0 },
+        { label:'What you put in (no growth)', data:plain, borderColor:'#5C6B7A',
+          borderDash:[6,5], fill:false, tension:0, borderWidth:2, pointRadius:0 },
+      ]
+    };
+    const opts = {
+      responsive:true,
+      interaction:{mode:'index', intersect:false},
+      plugins:{
+        legend:{labels:{font:{family:'Inter'}, color:'#1A2230'}},
+        tooltip:{callbacks:{label:c => c.dataset.label + ': ' + fmt(c.parsed.y)}}
+      },
+      scales:{
+        x:{title:{display:true, text:'Years', color:'#5C6B7A'}, grid:{display:false}},
+        y:{ticks:{callback:v => '$' + (v/1000) + 'k'}, grid:{color:'#EEF1F4'}}
+      }
+    };
+    if (chart){ chart.data = data; chart.options = opts; chart.update(); }
+    else chart = new Chart(ctx, {type:'line', data, options:opts});
+  }
+
+  function drawMilestones(labels, invested){
+    const targets = [100000, 500000, 1000000];
+    const names = {100000:'First $100k', 500000:'Half a million', 1000000:'Millionaire 🎉'};
+    let html = '';
+    targets.forEach(t => {
+      let hitYear = null;
+      for (let i = 0; i < invested.length; i++){
+        if (invested[i] >= t){ hitYear = labels[i]; break; }
+      }
+      if (hitYear !== null){
+        html += `<div class="milestone"><span class="dot"></span>
+          <strong>${names[t]}</strong>&nbsp;reached in year ${hitYear}.</div>`;
+      } else {
+        html += `<div class="milestone miss"><span class="dot"></span>
+          ${names[t]} — not reached in this time frame.</div>`;
+      }
+    });
+    $('milestones').innerHTML = html;
+  }
+
+  ['initial','monthly','rate','years','inflation'].forEach(id =>
+    $(id).addEventListener('input', compute));
+
+  document.querySelectorAll('.preset').forEach(btn =>
+    btn.addEventListener('click', () => {
+      const p = presets[btn.dataset.preset];
+      $('initial').value = p.initial; $('monthly').value = p.monthly;
+      $('rate').value = p.rate; $('years').value = p.years; $('inflation').value = p.inflation;
+      compute();
+    }));
+
+  compute();
+</script>
+</body>
+</html>

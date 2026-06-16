@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>On the Green — Jace's Golf Page</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="scratch.css" />
+</head>
+<body>
+
+  <!-- ===== DIV 1: top navigation bar ===== -->
+  <div class="topbar">
+    <span class="brand">⛳ On the Green</span>
+    <nav>
+      <a href="#basics">How I practice</a>
+      <a href="#watch">The greatest shot</a>
+      <a href="#data">The numbers</a>
+      <a href="#app">My app</a>
+      <a href="index.html">← Back to my portfolio</a>
+    </nav>
+  </div>
+
+  <div class="page">
+
+    <a id="top"></a>
+
+    <!-- ===== DIV 2: hero block ===== -->
+    <div class="hero">
+      <h1>Why I'm Hooked on Golf</h1>
+      <p>Four-plus hours outside, one little ball, and a game you can never quite beat.
+         I picked it up a few years back and now it's the thing I think about when I should
+         be thinking about other things. Here's the short version of why — with a little
+         volleyball thrown in, since that's where I came from.</p>
+
+      <!-- custom image: hand-drawn golf scene, embedded inline (no image file needed) -->
+      <svg viewBox="0 0 800 360" xmlns="http://www.w3.org/2000/svg" role="img"
+           aria-label="Golf course scene with a flag, hole, and ball at sunrise"
+           style="width:100%;height:auto;border-radius:10px;margin-top:18px;display:block;">
+        <defs>
+          <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#bfe3f0"/><stop offset="55%" stop-color="#e8f4ea"/><stop offset="100%" stop-color="#f2ebd9"/>
+          </linearGradient>
+          <linearGradient id="hill1" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#5a9a52"/><stop offset="100%" stop-color="#3f7e3d"/>
+          </linearGradient>
+          <linearGradient id="hill2" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#4c8a44"/><stop offset="100%" stop-color="#2f6630"/>
+          </linearGradient>
+          <radialGradient id="green" cx="50%" cy="35%" r="75%">
+            <stop offset="0%" stop-color="#69b35c"/><stop offset="100%" stop-color="#3c7a3a"/>
+          </radialGradient>
+        </defs>
+        <rect width="800" height="360" fill="url(#sky)"/>
+        <circle cx="640" cy="78" r="40" fill="#f4d58d" opacity="0.85"/>
+        <circle cx="640" cy="78" r="40" fill="none" stroke="#f0c869" stroke-width="2" opacity="0.5"/>
+        <path d="M0 200 Q200 140 400 185 T800 175 V360 H0 Z" fill="url(#hill1)"/>
+        <path d="M0 250 Q260 190 520 235 T800 240 V360 H0 Z" fill="url(#hill2)"/>
+        <ellipse cx="400" cy="320" rx="380" ry="80" fill="url(#green)"/>
+        <ellipse cx="430" cy="300" rx="16" ry="6" fill="#1c1c1c"/>
+        <rect x="428" y="180" width="4" height="120" rx="2" fill="#d9d4c5"/>
+        <path d="M432 184 L500 198 L432 214 Z" fill="#c0392b"/>
+        <circle cx="360" cy="306" r="9" fill="#ffffff" stroke="#d8d8d8" stroke-width="1"/>
+        <circle cx="357" cy="304" r="1.1" fill="#cfcfcf"/><circle cx="362" cy="305" r="1.1" fill="#cfcfcf"/><circle cx="360" cy="309" r="1.1" fill="#cfcfcf"/>
+        <path d="M150 300 Q300 150 360 305" fill="none" stroke="#ffffff" stroke-width="2.5" stroke-dasharray="6 7" stroke-linecap="round" opacity="0.8"/>
+      </svg>
+    </div>
+
+    <!-- ===== DIV 3: main content card ===== -->
+    <div class="card">
+      <h2 id="basics">How I Actually Practice</h2>
+      <p>Most people think golf is just hitting a ball. It's really four or five separate
+         skills stacked on top of each other, and you're only as good as your weakest one.
+         Here's how I rank what to work on — and the specific stuff I drill inside each
+         (an ordered list of priorities, with an unordered list nested under each one):</p>
+
+      <!-- unordered list embedded inside an ordered list -->
+      <ol>
+        <li>Tee shots — they set the tone for the hole
+          <ul>
+            <li>Aim at something smaller than the fairway</li>
+            <li>Smooth tempo beats trying to kill it</li>
+            <li>Commit before I ever stand over the ball</li>
+          </ul>
+        </li>
+        <li>Irons &amp; approach — this is how you get birdie looks
+          <ul>
+            <li>Know my real carry numbers, not my hero numbers</li>
+            <li>Aim for the fat part of the green, not the pin</li>
+          </ul>
+        </li>
+        <li>Short game — where scores actually drop
+          <ul>
+            <li>Chip to a landing spot, not the hole</li>
+            <li>Grind on the 3-to-15-footers that decide rounds</li>
+          </ul>
+        </li>
+        <li>The mental game — the hardest six inches in golf
+          <ul>
+            <li>Reset after a bad shot; the next one doesn't know about it</li>
+            <li>Play the smart shot, not the highlight-reel one</li>
+          </ul>
+        </li>
+      </ol>
+
+      <p style="margin-bottom:0;">
+        Funny enough, the mental reset is the part I'm best at — and that came from volleyball,
+        not golf. I played on an Arizona <strong>state and national championship</strong> team in
+        2021, and the biggest thing it taught me was how to forget the last point fast. Turns out
+        that works just as well after a shanked 7-iron.
+      </p>
+    </div>
+
+    <!-- ===== content card: YouTube ===== -->
+    <div class="card">
+      <h2 id="watch">The Greatest Shot I've Ever Seen</h2>
+      <p>Tiger Woods, 16th hole, final round of the 2005 Masters. He chips from way left of the
+         green, and the ball tracks down the slope, slows to a crawl, and stops dead on the lip
+         of the cup — the Nike swoosh sitting there for a beat like it's posing for the camera —
+         and then drops. Even if you don't watch golf, watch this one:</p>
+
+      <!-- embedded YouTube video (only plays on the live hosted site) -->
+      <div class="video-wrap">
+        <iframe
+          src="https://www.youtube.com/embed/B_tkJEAGMDE"
+          title="Tiger Woods chip-in at the 2005 Masters"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen></iframe>
+      </div>
+      <p style="font-size:0.88rem;color:#5a6b58;margin-bottom:0;">
+        (The video only plays on the live hosted site — not when the file is opened locally.)
+      </p>
+    </div>
+
+    <!-- ===== content card: Tableau ===== -->
+    <div class="card">
+      <h2 id="data">The Numbers Behind the Game</h2>
+      <p>Golf is a data nerd's dream — every part of the game gets measured. Here's a live,
+         interactive PGA Tour player-performance dashboard from Tableau Public. Click around,
+         filter it, and dig into the stats yourself:</p>
+
+      <!-- live, interactive embedded Tableau graph (iframe embed) -->
+      <div class="viz-frame">
+        <iframe
+          src="https://public.tableau.com/views/PGATOUR_PLAYER_PERFORMANCE_DASHBOARD/PlayerPerformance?:embed=true&amp;:showVizHome=no&amp;:toolbar=yes&amp;:display_count=no&amp;:language=en-US"
+          width="100%" height="720" frameborder="0" style="border:0;display:block;"
+          title="PGA Tour player performance dashboard"></iframe>
+      </div>
+      <p style="font-size:0.85rem;color:#5a6b58;margin:8px 0 0;">
+        Dashboard by Edward Hayter on Tableau Public.
+      </p>
+    </div>
+
+    <!-- ===== content card: app link ===== -->
+    <div class="card">
+      <h2 id="app">A Little App I Built</h2>
+      <p>Golf taught me patience, and so does investing — both reward the long game. I built a
+         simple tool that shows how money grows when you keep adding to it and let it compound.
+         Mess with the numbers and watch it climb:</p>
+      <!-- link from scratch page to the app -->
+      <a class="app-button" href="app.html">Open my Wealth Growth Simulator →</a>
+    </div>
+
+    <div style="text-align:center;">
+      <a class="anchor-top" href="#top">↑ Back to top</a>
+    </div>
+
+    <div class="scratch-footer">
+      Hand-coded (HTML + CSS) by Jace Miller ·
+      <a href="index.html">Back to my portfolio</a>
+    </div>
+
+  </div>
+
+</body>
+</html>

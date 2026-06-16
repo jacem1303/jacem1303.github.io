@@ -1,0 +1,208 @@
+/* ============================================================
+   Jace Miller — Professional site styles
+   Layered on top of Bootstrap 5 to give the site a finance/
+   real-estate identity (slate navy + brass) instead of the
+   default Bootstrap look.
+   ============================================================ */
+
+:root {
+  --navy:        #0F2C4C;
+  --navy-deep:   #0A1F38;
+  --brass:       #C8A04B;
+  --brass-dark:  #A8843A;
+  --paper:       #FAF9F6;
+  --ink:         #1A2230;
+  --slate:       #5C6B7A;
+  --line:        #E4E1D9;
+}
+
+/* ---------- Base ---------- */
+body {
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  color: var(--ink);
+  background-color: var(--paper);
+  line-height: 1.65;
+}
+
+h1, h2, h3, h4, h5, .display-face {
+  font-family: 'Fraunces', Georgia, serif;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: var(--navy);
+}
+
+a { color: var(--navy); }
+a:hover { color: var(--brass-dark); }
+
+.text-brass { color: var(--brass) !important; }
+.bg-navy { background-color: var(--navy) !important; }
+
+/* small uppercase label used as section eyebrows */
+.eyebrow {
+  font-family: 'Inter', sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--brass-dark);
+}
+
+/* ---------- Navbar ---------- */
+.navbar {
+  background-color: var(--navy) !important;
+  border-bottom: 3px solid var(--brass);
+}
+.navbar .navbar-brand {
+  font-family: 'Fraunces', Georgia, serif;
+  font-weight: 600;
+  color: #fff !important;
+  font-size: 1.35rem;
+}
+.navbar .nav-link {
+  color: rgba(255,255,255,0.82) !important;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  padding-left: 1rem !important;
+  padding-right: 1rem !important;
+}
+.navbar .nav-link:hover,
+.navbar .nav-link.active {
+  color: var(--brass) !important;
+}
+
+/* ---------- Hero ---------- */
+.hero {
+  background: linear-gradient(150deg, var(--navy-deep) 0%, var(--navy) 70%);
+  color: #fff;
+  padding: 5rem 0 5.5rem;
+  position: relative;
+  overflow: hidden;
+}
+.hero::after {           /* subtle brass underline detail */
+  content: "";
+  position: absolute;
+  left: 0; right: 0; bottom: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--brass) 0%, transparent 60%);
+}
+.hero h1 { color: #fff; font-size: clamp(2.4rem, 5vw, 3.6rem); line-height: 1.05; }
+.hero .lead { color: rgba(255,255,255,0.85); font-size: 1.2rem; }
+.hero-photo {
+  width: 220px; height: 220px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 4px solid var(--brass);
+  box-shadow: 0 18px 40px rgba(0,0,0,0.35);
+}
+
+/* ---------- Buttons ---------- */
+.btn-brass {
+  background-color: var(--brass);
+  border: none;
+  color: var(--navy-deep);
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  padding: 0.6rem 1.4rem;
+}
+.btn-brass:hover { background-color: var(--brass-dark); color: #fff; }
+
+.btn-outline-light-brass {
+  border: 1.5px solid var(--brass);
+  color: var(--brass);
+  font-weight: 600;
+  padding: 0.6rem 1.4rem;
+}
+.btn-outline-light-brass:hover { background-color: var(--brass); color: var(--navy-deep); }
+
+/* ---------- Sections & cards ---------- */
+section { padding: 4rem 0; }
+
+.section-title {
+  position: relative;
+  margin-bottom: 2rem;
+  padding-bottom: 0.75rem;
+}
+.section-title::after {
+  content: "";
+  position: absolute;
+  left: 0; bottom: 0;
+  width: 56px; height: 3px;
+  background-color: var(--brass);
+}
+
+.card-soft {
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 1.75rem;
+  height: 100%;
+  transition: transform 0.18s ease, box-shadow 0.18s ease;
+}
+.card-soft:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 14px 30px rgba(15,44,76,0.10);
+}
+.card-soft .icon-dot {
+  width: 44px; height: 44px;
+  border-radius: 50%;
+  background: rgba(200,160,75,0.15);
+  color: var(--brass-dark);
+  display: flex; align-items: center; justify-content: center;
+  font-weight: 700; font-size: 1.25rem;
+  margin-bottom: 1rem;
+}
+
+/* ---------- Résumé page ---------- */
+.resume-wrap { max-width: 880px; }
+.resume-header {
+  border-bottom: 3px solid var(--brass);
+  padding-bottom: 1.25rem;
+  margin-bottom: 1.5rem;
+}
+.resume-section-label {
+  font-family: 'Fraunces', serif;
+  color: var(--navy);
+  font-size: 1.35rem;
+  border-bottom: 1px solid var(--line);
+  padding-bottom: 0.4rem;
+  margin: 2rem 0 1rem;
+}
+.resume-entry { margin-bottom: 1.4rem; }
+.resume-entry .role { font-weight: 600; color: var(--ink); }
+.resume-entry .org  { color: var(--brass-dark); font-weight: 600; }
+.resume-entry .meta { color: var(--slate); font-size: 0.9rem; }
+.resume-entry ul { margin-top: 0.4rem; }
+.resume-entry li { margin-bottom: 0.3rem; }
+
+.skill-pill {
+  display: inline-block;
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 100px;
+  padding: 0.35rem 0.9rem;
+  margin: 0 0.4rem 0.6rem 0;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--navy);
+}
+
+/* ---------- Footer ---------- */
+footer {
+  background-color: var(--navy-deep);
+  color: rgba(255,255,255,0.7);
+  padding: 2.5rem 0;
+}
+footer a { color: #fff; margin: 0 0.5rem; font-size: 1.3rem; }
+footer a:hover { color: var(--brass); }
+
+/* ---------- Responsive ---------- */
+@media (max-width: 767px) {
+  .hero { padding: 3.5rem 0; text-align: center; }
+  .hero-photo { width: 160px; height: 160px; margin-bottom: 1.5rem; }
+  section { padding: 3rem 0; }
+}
+
+/* accessibility: respect reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .card-soft { transition: none; }
+}
